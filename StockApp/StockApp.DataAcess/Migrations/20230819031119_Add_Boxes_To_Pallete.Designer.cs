@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StockApp.DataAcess;
 
@@ -10,9 +11,10 @@ using StockApp.DataAcess;
 namespace StockApp.DataAcess.Migrations
 {
     [DbContext(typeof(MasterDbContext))]
-    partial class MasterDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230819031119_Add_Boxes_To_Pallete")]
+    partial class Add_Boxes_To_Pallete
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.21");
@@ -32,11 +34,8 @@ namespace StockApp.DataAcess.Migrations
                     b.Property<double>("Height")
                         .HasColumnType("REAL");
 
-                    b.Property<int>("PalleteId")
+                    b.Property<int?>("PalleteId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<double>("Weight")
-                        .HasColumnType("REAL");
 
                     b.Property<double>("Width")
                         .HasColumnType("REAL");
@@ -60,9 +59,6 @@ namespace StockApp.DataAcess.Migrations
                     b.Property<double>("Height")
                         .HasColumnType("REAL");
 
-                    b.Property<double>("Weight")
-                        .HasColumnType("REAL");
-
                     b.Property<double>("Width")
                         .HasColumnType("REAL");
 
@@ -73,13 +69,9 @@ namespace StockApp.DataAcess.Migrations
 
             modelBuilder.Entity("StockApp.DataAcess.Entities.Box", b =>
                 {
-                    b.HasOne("StockApp.DataAcess.Entities.Pallete", "Pallete")
+                    b.HasOne("StockApp.DataAcess.Entities.Pallete", null)
                         .WithMany("Boxes")
-                        .HasForeignKey("PalleteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pallete");
+                        .HasForeignKey("PalleteId");
                 });
 
             modelBuilder.Entity("StockApp.DataAcess.Entities.Pallete", b =>

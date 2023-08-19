@@ -5,17 +5,38 @@ using StockApp.DataAcess.Entities;
 
 Console.WriteLine("Hello, World!");
 
-using var db  = new MasterDbContext();
+using var db = new MasterDbContext();
 
-db.Boxes.Add(new Box()
+
+var p1 = new Pallete()
 {
-    Width = 1,
-    Height = 2,
-    Depth = 3
-});
+    Height = 11,
+    Width = 21,
+    Depth = 31,
+};
 
+var p2 = new Pallete()
+{
+    Height = 12,
+    Width = 22,
+    Depth = 32,
+};
+
+db.Palletes.AddRange(p1, p2);
+
+db.SaveChangesAsync();
+
+var bb = new Box()
+{
+    Height = 1,
+    Width = 2,
+    Depth = 2,
+    PalleteId = 1
+};
+
+db.Boxes.Add(bb);
 db.SaveChanges();
 
-foreach(var a in db.Boxes){
-    Console.WriteLine(a.Id);
-}
+var boxes = db.Boxes.ToList();
+var palletes = db.Palletes.ToList();
+Console.WriteLine();

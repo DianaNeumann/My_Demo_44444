@@ -7,4 +7,8 @@ public class Pallete
     public double Height { get; set; }
     public double Width { get; set; }
     public double Depth { get; set; }
+    
+    public double Weight { get; set; }
+
+    public virtual ICollection<Box> Boxes { get; set; } = new List<Box>();
 }

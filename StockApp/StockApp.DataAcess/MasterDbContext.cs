@@ -7,7 +7,7 @@ public class MasterDbContext : DbContext
 {
     public MasterDbContext()
     {
-        // Database.EnsureCreated();
+        Database.EnsureCreated();
     }
 
     public DbSet<Box> Boxes { get; set; }
@@ -16,6 +16,10 @@ public class MasterDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlite("Filename=Master.db");
+    }
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
     }
     
 }
