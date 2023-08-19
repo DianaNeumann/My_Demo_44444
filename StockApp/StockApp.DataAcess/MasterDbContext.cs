@@ -5,9 +5,9 @@ namespace StockApp.DataAcess;
 
 public class MasterDbContext : DbContext
 {
-    protected MasterDbContext()
+    public MasterDbContext()
     {
-        Database.EnsureCreated();
+        // Database.EnsureCreated();
     }
 
     public DbSet<Box> Boxes { get; set; }
