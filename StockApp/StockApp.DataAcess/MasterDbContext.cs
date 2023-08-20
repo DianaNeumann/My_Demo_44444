@@ -15,7 +15,7 @@ public class MasterDbContext : DbContext
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite("Filename=Master.db");
+        optionsBuilder.UseInMemoryDatabase(databaseName: "StockDb");
     }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
