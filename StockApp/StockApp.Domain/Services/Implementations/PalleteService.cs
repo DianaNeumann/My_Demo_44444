@@ -49,8 +49,7 @@ public class PalleteService : IPalleteService
         var pallete = _dbContext.Palletes.First(p => p.Id == palleteId);
 
         return pallete.Boxes
-                   .Sum(b => b.Height * b.Width * b.Depth) +
-               (pallete.Height * pallete.Width * pallete.Depth);
+            .Sum(b => b.Weight) + pallete.Weight;
     }
 
     public async Task<Pallete> GetPalleteByIdAsync(int palleteId, CancellationToken cancellationToken)

@@ -10,7 +10,7 @@ public class Pallete
     public double Weight { get; set; }
     public DateOnly ExpireDate => Boxes.Min(b => b.DateOfManufacture);
 
-    public double FullWeight => Boxes.Sum(b => b.Height * b.Width * b.Depth) + Height * Width * Depth;
+    public double FullWeight => Boxes.Sum(b => b.Weight) + Weight;
 
     public virtual ICollection<Box> Boxes { get; set; } = new List<Box>();
     
