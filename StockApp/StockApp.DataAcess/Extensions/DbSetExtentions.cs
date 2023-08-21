@@ -1,9 +1,21 @@
 using Microsoft.EntityFrameworkCore;
+using StockApp.DataAcess.Entities;
 
 namespace StockApp.DataAcess.Extensions;
 
 public static class DbSetExtentions
 {
+
+    public static async Task<Pallete> GetPalleteAsync(
+        this DbSet<Pallete> set,
+        int id,
+        CancellationToken cancellationToken)
+    {
+        return await set
+            .Include(p => p.Boxes)
+            .FirstAsync(p => p.Id == id, cancellationToken);
+    }
+    
     public static async Task<T> GetEntityAsync<T>(
         this DbSet<T> set,
         int id,
@@ -19,15 +31,5 @@ public static class DbSetExtentions
         }
 
         return entity;
-    }
-    
-    public static async Task<T?> FindEntityAsync<T>(
-        this DbSet<T> set,
-        int id,
-        CancellationToken cancellationToken
-    )
-        where T : class
-    {
-        return await set.FindAsync(new object[] { id }, cancellationToken);
     }
 }

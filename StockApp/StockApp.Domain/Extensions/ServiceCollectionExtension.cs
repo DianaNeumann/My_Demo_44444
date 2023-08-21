@@ -8,7 +8,6 @@ public static class ServiceCollectionExtension
 {
     public static IServiceCollection AddApplicationScopes(this IServiceCollection collection)
     {
-        collection.AddScoped<IBoxService, BoxService>();
         collection.AddScoped<IPalleteService, PalleteService>();
 
         return collection;
